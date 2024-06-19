@@ -1,6 +1,5 @@
-import { generalKnowledge } from './generalKnowledge'
-import { javascript } from './javascript'
-import { python } from './python'
+/* import { javascript } from './javascript'
+import { python } from './python' */
 import { react } from './react'
 
 // Question Types
@@ -19,6 +18,7 @@ export type Question = {
   score: number
   code?: string
   image?: string
+  explanation?: string
 }
 
 export type Topic = {
@@ -31,8 +31,7 @@ export type Topic = {
 }
 
 export const quiz: Record<string, Topic> = {
-  JavaScript: javascript,
-  React: react,
-  Python: python,
-  'General Knowledge': generalKnowledge,
+  'ブロンズ': react,
+  /* 'シルバー': javascript,
+  'ゴールド': python, */
 }

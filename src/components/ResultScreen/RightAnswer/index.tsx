@@ -6,6 +6,8 @@ import { HighlightedText } from '../../../styles/Global'
 interface RightAnswerProps {
   correctAnswers: string[]
   choices: string[]
+  isMatch: boolean
+  explanation?: string
 }
 
 const RightAnswerContainer = styled.p`
@@ -16,20 +18,54 @@ const RightAnswerContainer = styled.p`
   line-height: 1.2;
 `
 
-const RightAnswer: FC<RightAnswerProps> = ({ correctAnswers, choices }) => {
-  return (
-    <RightAnswerContainer>
-      {`Right ${correctAnswers.length < 2 ? 'Answer' : 'Answers'}: `}
-      {correctAnswers.map((item: string, index: number) => {
-        const label = String.fromCharCode(65 + choices.indexOf(item))
+const Correct = styled.span`
+  font-weight: 500;
+  font-size: 16px;
+  color: #12b40e;
+  margin-bottom: 15px;
+  display: block;
+`
+const InCorrect = styled.span`
+  font-weight: 500;
+  font-size: 16px;
+  color: #ff143e;
+  margin-bottom: 15px;
+  display: block;
+`
 
-        return (
-          <HighlightedText key={index} themeText>
-            {`${label} (${item})${index !== correctAnswers.length - 1 ? ', ' : ''}`}
-          </HighlightedText>
-        )
-      })}
-    </RightAnswerContainer>
+const RightAnswer: FC<RightAnswerProps> = ({
+  correctAnswers,
+  choices,
+  isMatch,
+  explanation,
+}) => {
+  return (
+    <>
+      <RightAnswerContainer>
+        {isMatch && <Correct>正解</Correct>}
+        {!isMatch && (
+          <>
+            <InCorrect>不正解</InCorrect>
+            {`正解: `}
+            {correctAnswers.map((item: string, index: number) => {
+              const label = String.fromCharCode(65 + choices.indexOf(item))
+
+              return (
+                <HighlightedText key={index} themeText>
+                  {`${label} (${item})${index !== correctAnswers.length - 1 ? ', ' : ''}`}
+                </HighlightedText>
+              )
+            })}
+          </>
+        )}
+      </RightAnswerContainer>
+      {explanation && (
+        <RightAnswerContainer>
+          {`解説: `}
+          <HighlightedText themeText>{explanation}</HighlightedText>
+        </RightAnswerContainer>
+      )}
+    </>
   )
 }
 

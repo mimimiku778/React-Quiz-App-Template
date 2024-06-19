@@ -16,7 +16,7 @@ const QuizProvider = ({ children }: QuizProviderProps) => {
     initialState.currentScreen
   )
 
-  const [questions, setQuestions] = useState(quiz[initialState.quizTopic].questions)
+  const [questions, setQuestions] = useState(initialState.questions)
 
   const {
     questions: quizQuestions,

@@ -143,6 +143,7 @@ const ResultScreen: FC = () => {
               selectedAnswer,
               score,
               isMatch,
+              explanation,
             },
             index: number
           ) => {
@@ -173,13 +174,15 @@ const ResultScreen: FC = () => {
                         )
                       })}
                     </ul>
-                    {/* only show if the answer is wrong */}
-                    {!isMatch && (
-                      <RightAnswer correctAnswers={correctAnswers} choices={choices} />
-                    )}
+                    <RightAnswer
+                      correctAnswers={correctAnswers}
+                      choices={choices}
+                      isMatch={isMatch}
+                      explanation={explanation}
+                    />
                   </div>
                 </ResizableBox>
-                <Score right={isMatch}>{`Score ${isMatch ? score : 0}`}</Score>
+                <Score right={isMatch}>{`${isMatch ? score : 0} 点`}</Score>
               </QuestionContainer>
             )
           }
@@ -187,7 +190,7 @@ const ResultScreen: FC = () => {
       </InnerContainer>
       <Flex flxEnd>
         <Button
-          text="RETRY"
+          text="再挑戦"
           onClick={onClickRetry}
           icon={<Refresh />}
           iconPosition="left"

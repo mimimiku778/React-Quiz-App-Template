@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useRef } from 'react'
 import styled from 'styled-components'
 
 import { device } from '../../../styles/BreakPoints'
@@ -50,6 +50,18 @@ const Question: FC<QuestionTypes> = ({
   selectedAnswer,
   handleAnswerSelection,
 }) => {
+  const isInit = useRef('')
+
+  if (isInit.current !== question) {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant' as any,
+    })
+
+    isInit.current = question
+  }
+
   return (
     <QuestionContainer>
       <QuestionStyle>{question}</QuestionStyle>

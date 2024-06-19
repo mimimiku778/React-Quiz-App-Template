@@ -160,7 +160,7 @@ const QuestionScreen: FC = () => {
         />
         <ButtonWrapper>
           <Button
-            text={activeQuestion === questions.length - 1 ? 'Finish' : 'Next'}
+            text={activeQuestion === questions.length - 1 ? '完了' : '次へ'}
             onClick={onClickNext}
             icon={<Next />}
             iconPosition="right"
@@ -171,11 +171,11 @@ const QuestionScreen: FC = () => {
       {/* timer or finish quiz modal*/}
       {(showTimerModal || showResultModal) && (
         <ModalWrapper
-          title={showResultModal ? 'Done!' : 'Your time is up!'}
-          subtitle={`You have attempted ${result.length} questions in total.`}
+          title={showResultModal ? '完了!' : '時間切れ!'}
+          subtitle={`合計 ${result.length} 個の問題に回答しました。`}
           onClick={handleModal}
           icon={showResultModal ? <CheckIcon /> : <TimerIcon />}
-          buttonTitle="SHOW RESULT"
+          buttonTitle="採点結果"
         />
       )}
     </PageCenter>

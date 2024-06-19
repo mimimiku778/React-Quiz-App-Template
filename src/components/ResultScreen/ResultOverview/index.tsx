@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useRef } from 'react'
 import styled from 'styled-components'
 
 import { useQuiz } from '../../../context/QuizContext'
@@ -27,6 +27,18 @@ interface ResultOverviewProps {
 const ResultOverview: FC<ResultOverviewProps> = ({ result }) => {
   const { quizDetails, endTime } = useQuiz()
 
+  const isInit = useRef(0)
+
+  if (isInit.current !== endTime) {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant' as any,
+    })
+
+    isInit.current = endTime
+  }
+
   const totalQuestionAttempted = result.length
 
   const obtainedScore = result
@@ -35,24 +47,23 @@ const ResultOverview: FC<ResultOverviewProps> = ({ result }) => {
 
   // Passed if 60 or more than 60% marks
   const calculateStatus =
-    (obtainedScore / quizDetails.totalScore) * 100 >= 60 ? 'Passed' : 'Failed'
+    (obtainedScore / quizDetails.totalScore) * 100 >= 90 ? '合格' : '不合格'
 
   return (
     <ResultOverviewStyle>
       <p>
-        You attempted questions:{' '}
-        <HighlightedText> {totalQuestionAttempted} </HighlightedText>/{' '}
-        {quizDetails.totalQuestions}
+        結果:<HighlightedText> {calculateStatus}</HighlightedText>
       </p>
       <p>
-        Score secured:<HighlightedText> {obtainedScore} </HighlightedText>/{' '}
+        点数:<HighlightedText> {obtainedScore} </HighlightedText>/{' '}
         {quizDetails.totalScore}
       </p>
       <p>
-        Time Spent:<HighlightedText> {convertSeconds(endTime)} </HighlightedText>
+        回答した問題数: <HighlightedText> {totalQuestionAttempted} </HighlightedText>/{' '}
+        {quizDetails.totalQuestions}
       </p>
       <p>
-        Status:<HighlightedText> {calculateStatus}</HighlightedText>
+        経過時間:<HighlightedText> {convertSeconds(endTime)} </HighlightedText>
       </p>
     </ResultOverviewStyle>
   )

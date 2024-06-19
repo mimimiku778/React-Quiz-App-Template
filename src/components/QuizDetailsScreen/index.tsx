@@ -15,8 +15,9 @@ import Button from '../ui/Button'
 
 const AppTitle = styled.h2`
   font-weight: 700;
-  font-size: 32px;
+  font-size: 26px;
   color: ${({ theme }) => theme.colors.themeColor};
+  line-height: 1.5;
 `
 
 const DetailTextContainer = styled.div`
@@ -50,28 +51,23 @@ const QuizDetailsScreen = () => {
         <LogoContainer>
           <AppLogo />
         </LogoContainer>
-        <AppTitle>XEVEN QUIZ</AppTitle>
+        <AppTitle>オプチャ検定 練習問題</AppTitle>
         <DetailTextContainer>
           <DetailText>
-            Selected Quiz Topic: <HighlightedText>{selectedQuizTopic}</HighlightedText>
+            検定レベル: <HighlightedText>{selectedQuizTopic}</HighlightedText>
           </DetailText>
           <DetailText>
-            Total questions to attempt:{' '}
-            <HighlightedText>{totalQuestions}</HighlightedText>
+            出題数: <HighlightedText>{totalQuestions}</HighlightedText> 問
           </DetailText>
           <DetailText>
-            Score in total: <HighlightedText>{totalScore}</HighlightedText>
+            合計点数: <HighlightedText>{totalScore}</HighlightedText> 点
           </DetailText>
           <DetailText>
-            Total time: <HighlightedText>{convertSeconds(totalTime)}</HighlightedText>
-          </DetailText>
-          <DetailText>
-            To save time, you can skip questions. Skipped questions will show up at the
-            end of the quiz.
+            制限時間: <HighlightedText>{convertSeconds(totalTime)}</HighlightedText>
           </DetailText>
         </DetailTextContainer>
         <Button
-          text="Start"
+          text="スタート"
           icon={<StartIcon />}
           iconPosition="left"
           onClick={goToQuestionScreen}

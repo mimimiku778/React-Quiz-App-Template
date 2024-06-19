@@ -184,7 +184,7 @@ export const CenterCardContainer = styled.div`
   background: ${({ theme }) => theme.colors.cardBackground};
   border-radius: 4px;
   min-width: 773px;
-  min-height: 620px;
+  /* min-height: 620px; */
   padding: 50px 10px 60px 10px;
   display: flex;
   flex-direction: column;

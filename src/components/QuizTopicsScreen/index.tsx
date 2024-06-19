@@ -15,10 +15,11 @@ import { ScreenTypes } from '../../types'
 import Button from '../ui/Button'
 
 const Heading = styled.h2`
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 700;
   margin-bottom: 20px;
   text-align: center;
+  line-height: 1.5;
 `
 
 const DetailText = styled.p`
@@ -77,6 +78,12 @@ const SelectButtonText = styled.span`
     font-weight: 500;
   }
 `
+const Term = styled.div`
+  font-size: 11px;
+  color: #777;
+  margin-top: 1rem;
+  line-height: 1.5;
+`
 
 const QuizTopicsScreen: React.FC = () => {
   const { quizTopic, selectQuizTopic, setCurrentScreen } = useQuiz()
@@ -92,9 +99,9 @@ const QuizTopicsScreen: React.FC = () => {
           <AppLogo />
         </LogoContainer>
         <Heading>
-          WELCOME TO <HighlightedText> XEVEN QUIZ</HighlightedText>
+          <HighlightedText>オプチャ検定 </HighlightedText>の練習問題に挑戦しよう！
         </Heading>
-        <DetailText>Select topic below to start your Quiz.</DetailText>
+        {quizTopics.length > 1 && <DetailText>検定レベルを選択してください。</DetailText>}
         <SelectButtonContainer>
           {quizTopics.map(({ title, icon, disabled }) => (
             <SelectButton
@@ -108,8 +115,13 @@ const QuizTopicsScreen: React.FC = () => {
             </SelectButton>
           ))}
         </SelectButtonContainer>
-        <Button text="Continue" onClick={goToQuizDetailsScreen} bold />
+        <Button text="挑戦する" onClick={goToQuizDetailsScreen} bold />
       </CenterCardContainer>
+      <Term>
+        「オプチャ検定」はLINEオープンチャット非公式の検定です。
+        LINEヤフー社はこの内容に関与していません。
+        監修しているのは一部のLINEオープンチャット公認メンターです。
+      </Term>
     </PageCenter>
   )
 }
