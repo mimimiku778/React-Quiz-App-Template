@@ -43,6 +43,17 @@ const QuestionContainer = styled.div`
   }
 `
 
+const QuestionId = styled.div`
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.darkerGray};
+  margin-bottom: calc(clamp(13px, calc(10px + 6 * ((100vw - 600px) / 1320)), 16px) * -1);
+  padding-bottom: 8px;
+  margin-top: -8px;
+  @media ${device.md} {
+    text-align: right;
+  }
+`
+
 const QuestionNumber = styled.h6`
   font-size: clamp(16px, 5vw, 24px);
   font-weight: 500;
@@ -76,6 +87,7 @@ const Answer = styled.li<AnswerProps>`
   border-radius: 16px;
   font-size: clamp(16px, 5vw, 18px);
   font-weight: 600;
+  line-height: 1.4;
   padding: 15px;
   color: ${({ theme }) => theme.colors.secondaryText};
   margin-top: clamp(13px, calc(10px + 6 * ((100vw - 600px) / 1320)), 16px);
@@ -104,7 +116,7 @@ const Answer = styled.li<AnswerProps>`
   }
 `
 
-const Score = styled.span<{ right: boolean }>`
+/* const Score = styled.span<{ right: boolean }>`
   font-weight: 500;
   font-size: 16px;
   color: ${({ right, theme }) =>
@@ -116,7 +128,7 @@ const Score = styled.span<{ right: boolean }>`
     margin-top: 10px;
     margin-right: 10px;
   }
-`
+` */
 
 const ResultScreen: FC = () => {
   const { result } = useQuiz()
@@ -141,9 +153,12 @@ const ResultScreen: FC = () => {
               image,
               correctAnswers,
               selectedAnswer,
-              score,
+              /* score, */
               isMatch,
               explanation,
+              contributor,
+              source,
+              id,
             },
             index: number
           ) => {
@@ -154,6 +169,7 @@ const ResultScreen: FC = () => {
                     <QuestionNumber>{`${index + 1}. `}</QuestionNumber>
                     <QuestionStyle>{question}</QuestionStyle>
                   </Flex>
+                  {id && <QuestionId>問題ID {id}</QuestionId>}
                   <div>
                     {code && <CodeSnippet code={code} language="javascript" />}
                     {image && <QuizImage image={image} />}
@@ -179,10 +195,13 @@ const ResultScreen: FC = () => {
                       choices={choices}
                       isMatch={isMatch}
                       explanation={explanation}
+                      contributor={contributor}
+                      source={source}
+                      id={id}
                     />
                   </div>
                 </ResizableBox>
-                <Score right={isMatch}>{`${isMatch ? score : 0} 点`}</Score>
+                {/* <Score right={isMatch}>{`${isMatch ? score : 0} 点`}</Score> */}
               </QuestionContainer>
             )
           }

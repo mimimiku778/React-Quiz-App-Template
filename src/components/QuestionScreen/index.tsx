@@ -52,17 +52,29 @@ const LogoContainer = styled.div`
 
 const ButtonWrapper = styled.div`
   position: absolute;
-  right: 60px;
+  width: 100%;
+  padding: 0 60px;
+  left: 0;
   bottom: 30px;
   display: flex;
   gap: 20px;
+  justify-content: space-between;
   @media ${device.sm} {
-    justify-content: flex-end;
-    width: 90%;
-    right: 15px;
+    padding: 0 15px;
   }
 `
+const ContributorWrapper = styled.div`
+  color: ${({ theme }) => theme.colors.darkerGray};
+  font-size: 12px;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  line-break: anywhere;
+  line-height: 1.2;
+`
 
+const ContributorNameLabel = styled.div`
+  margin-bottom: 6px;
+`
 const QuestionScreen: FC = () => {
   const [activeQuestion, setActiveQuestion] = useState<number>(0)
   const [selectedAnswer, setSelectedAnswer] = useState<string[]>([])
@@ -82,7 +94,8 @@ const QuestionScreen: FC = () => {
 
   const currentQuestion = questions[activeQuestion]
 
-  const { question, type, choices, code, image, correctAnswers } = currentQuestion
+  const { question, type, choices, code, image, correctAnswers, contributor, id } =
+    currentQuestion
 
   const onClickNext = () => {
     const isMatch: boolean =
@@ -157,8 +170,17 @@ const QuestionScreen: FC = () => {
           type={type}
           handleAnswerSelection={handleAnswerSelection}
           selectedAnswer={selectedAnswer}
+          id={id}
         />
         <ButtonWrapper>
+          <ContributorWrapper>
+            {contributor && (
+              <>
+                <ContributorNameLabel>出題者</ContributorNameLabel>
+                <ContributorWrapper>{contributor.name}</ContributorWrapper>
+              </>
+            )}
+          </ContributorWrapper>
           <Button
             text={activeQuestion === questions.length - 1 ? '完了' : '次へ'}
             onClick={onClickNext}

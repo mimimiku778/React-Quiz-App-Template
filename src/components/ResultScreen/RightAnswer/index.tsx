@@ -2,20 +2,24 @@ import { FC } from 'react'
 import styled from 'styled-components'
 
 import { HighlightedText } from '../../../styles/Global'
+import { Contributor, Source } from '../../../data/QuizQuestions'
 
 interface RightAnswerProps {
   correctAnswers: string[]
   choices: string[]
   isMatch: boolean
   explanation?: string
+  contributor?: Contributor
+  source?: Source
+  id?: number
 }
 
 const RightAnswerContainer = styled.p`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   color: ${({ theme }) => theme.colors.darkerGray};
   margin-top: 15px;
-  line-height: 1.2;
+  line-height: 1.5;
 `
 
 const Correct = styled.span`
@@ -33,11 +37,50 @@ const InCorrect = styled.span`
   display: block;
 `
 
+const SourceLinkWrapper = styled.div`
+  word-break: break-all;
+  overflow-wrap: break-word;
+  line-break: anywhere;
+  color: ${({ theme }) => theme.colors.darkerGray};
+  margin-top: 15px;
+  line-height: 1.5;
+  font-size: 14px;
+`
+
+const SourceLink = styled.a`
+  color: ${({ theme }) => theme.colors.themeText};
+`
+
+const ContributorWrapper = styled.div`
+  font-size: 13px;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  line-break: anywhere;
+  margin-top: 20px;
+  line-height: 1.5;
+`
+
+const ContributorLabel = styled.span`
+  color: ${({ theme }) => theme.colors.darkerGray};
+`
+
+const ContributorRoomWrapper = styled.div`
+  margin-top: 4px;
+`
+
+const ContributorRoomName = styled.a`
+  letter-spacing: -0.1px;
+  color: unset;
+`
+
 const RightAnswer: FC<RightAnswerProps> = ({
   correctAnswers,
   choices,
   isMatch,
   explanation,
+  contributor,
+  source,
+  id,
 }) => {
   return (
     <>
@@ -64,6 +107,30 @@ const RightAnswer: FC<RightAnswerProps> = ({
           {`解説: `}
           <HighlightedText themeText>{explanation}</HighlightedText>
         </RightAnswerContainer>
+      )}
+      {source && (
+        <SourceLinkWrapper>
+          {`出典URL: `}
+          <HighlightedText themeText>
+            <SourceLink href={source.url} target="_blank">
+              {source.title}
+            </SourceLink>
+          </HighlightedText>
+        </SourceLinkWrapper>
+      )}
+      {contributor && (
+        <ContributorWrapper>
+          <ContributorLabel>出題者: </ContributorLabel>
+          {contributor.name}
+          {contributor.roomName && contributor.url && (
+            <ContributorRoomWrapper>
+              <ContributorLabel>出題者のオプチャ: </ContributorLabel>
+              <ContributorRoomName href={contributor.url} target="_blank">
+                {contributor.roomName}
+              </ContributorRoomName>
+            </ContributorRoomWrapper>
+          )}
+        </ContributorWrapper>
       )}
     </>
   )

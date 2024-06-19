@@ -10,6 +10,8 @@ const TimerStyle = styled.span`
   font-size: clamp(16px, 5vw, 24px);
   font-weight: 500;
   margin-left: 8px;
+  font-variant-numeric: tabular-nums;
+  font-family: Arial, sans-serif;
   color: ${({ theme }) => theme.colors.themeColor};
   @media ${device.md} {
     margin-left: 5px;

@@ -11,7 +11,7 @@ export const ButtonStyle = styled.button.attrs(({ outline, bold, big }: ButtonTy
   bold,
   big,
 }))`
-  width: 195px;
+  min-width: 195px;
   min-height: 50px;
   color: ${({ theme, outline }) =>
     outline ? theme.colors.outlineButtonText : theme.colors.buttonText};
@@ -26,7 +26,7 @@ export const ButtonStyle = styled.button.attrs(({ outline, bold, big }: ButtonTy
   justify-content: center;
   align-items: center;
   @media ${device.md} {
-    width: ${({ big }) => (big ? '180px' : '150px')};
+    min-width: ${({ big }) => (big ? '180px' : '150px')};
     min-height: 40px;
     tap-highlight-color: transparent;
     -webkit-tap-highlight-color: transparent;

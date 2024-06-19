@@ -33,7 +33,7 @@ export interface Theme {
     darkerGray: string
   }
   fonts: {
-    anekMalayalam: string
+    fontFamilys: string
   }
   shadows: {
     activeButton: string

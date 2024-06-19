@@ -10,6 +10,10 @@ import { react } from './react'
 type Choice = string
 type CorrectAnswers = string[]
 
+export type Contributor = { name: string; roomName?: string; url?: string }
+
+export type Source = { title: string; url: string; }
+
 export type Question = {
   question: string
   choices: Choice[]
@@ -18,12 +22,14 @@ export type Question = {
   score: number
   code?: string
   image?: string
+  contributor?: Contributor
   explanation?: string
+  source?: Source
+  id?: number
 }
 
 export type Topic = {
   topic: string
-  level: string
   totalQuestions: number
   totalScore: number
   totalTime: number

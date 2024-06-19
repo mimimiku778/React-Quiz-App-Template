@@ -39,7 +39,7 @@ const ResultOverview: FC<ResultOverviewProps> = ({ result }) => {
     isInit.current = endTime
   }
 
-  const totalQuestionAttempted = result.length
+  //const totalQuestionAttempted = result.length
 
   const obtainedScore = result
     .filter((item) => item.isMatch && typeof item.score === 'number')
@@ -55,13 +55,13 @@ const ResultOverview: FC<ResultOverviewProps> = ({ result }) => {
         結果:<HighlightedText> {calculateStatus}</HighlightedText>
       </p>
       <p>
-        点数:<HighlightedText> {obtainedScore} </HighlightedText>/{' '}
+        正解:<HighlightedText> {obtainedScore} </HighlightedText>/{' '}
         {quizDetails.totalScore}
       </p>
-      <p>
+      {/* <p>
         回答した問題数: <HighlightedText> {totalQuestionAttempted} </HighlightedText>/{' '}
         {quizDetails.totalQuestions}
-      </p>
+      </p> */}
       <p>
         経過時間:<HighlightedText> {convertSeconds(endTime)} </HighlightedText>
       </p>

@@ -17,7 +17,7 @@ import Button from '../ui/Button'
 const Heading = styled.h2`
   font-size: 26px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-align: center;
   line-height: 1.5;
 `

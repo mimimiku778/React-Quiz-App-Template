@@ -39,7 +39,7 @@ const DetailText = styled.p`
 const QuizDetailsScreen = () => {
   const { setCurrentScreen, quizDetails } = useQuiz()
 
-  const { selectedQuizTopic, totalQuestions, totalScore, totalTime } = quizDetails
+  const { selectedQuizTopic, totalQuestions, /* totalScore, */ totalTime } = quizDetails
 
   const goToQuestionScreen = () => {
     setCurrentScreen(ScreenTypes.QuestionScreen)
@@ -59,9 +59,9 @@ const QuizDetailsScreen = () => {
           <DetailText>
             出題数: <HighlightedText>{totalQuestions}</HighlightedText> 問
           </DetailText>
-          <DetailText>
+          {/* <DetailText>
             合計点数: <HighlightedText>{totalScore}</HighlightedText> 点
-          </DetailText>
+          </DetailText> */}
           <DetailText>
             制限時間: <HighlightedText>{convertSeconds(totalTime)}</HighlightedText>
           </DetailText>

@@ -4,6 +4,7 @@ import { device } from '../../../styles/BreakPoints'
 
 const AnswerStyle = styled.div<{ highlightAnswer: boolean }>`
   font-size: clamp(18px, 4vw, 16px);
+  line-height: 1.4;
   color: ${({ theme }) => theme.colors.secondaryText};
   font-weight: 400;
   border: 1px solid

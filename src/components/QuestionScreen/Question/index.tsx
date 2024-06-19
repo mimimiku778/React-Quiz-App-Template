@@ -28,7 +28,7 @@ const QuestionStyle = styled.h2`
   font-weight: 500;
   margin-bottom: 25px;
   color: ${({ theme }) => theme.colors.primaryText};
-  line-height: 1.3;
+  line-height: 1.4;
 `
 
 interface QuestionTypes {
@@ -39,6 +39,7 @@ interface QuestionTypes {
   choices: string[]
   selectedAnswer: string[]
   handleAnswerSelection: (e: React.ChangeEvent<HTMLInputElement>, index: number) => void
+  id?: number
 }
 
 const Question: FC<QuestionTypes> = ({
