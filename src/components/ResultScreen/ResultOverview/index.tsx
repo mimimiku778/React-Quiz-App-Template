@@ -52,10 +52,13 @@ const ResultOverview: FC<ResultOverviewProps> = ({ result }) => {
   return (
     <ResultOverviewStyle>
       <p>
-        結果:<HighlightedText> {calculateStatus}</HighlightedText>
+        検定レベル <HighlightedText> {quizDetails.selectedQuizTopic} </HighlightedText>
       </p>
       <p>
-        正解:<HighlightedText> {obtainedScore} </HighlightedText>/{' '}
+        結果 <HighlightedText> {calculateStatus}</HighlightedText>
+      </p>
+      <p>
+        正解 <HighlightedText> {obtainedScore} </HighlightedText>/{' '}
         {quizDetails.totalScore}
       </p>
       {/* <p>
@@ -63,7 +66,7 @@ const ResultOverview: FC<ResultOverviewProps> = ({ result }) => {
         {quizDetails.totalQuestions}
       </p> */}
       <p>
-        経過時間:<HighlightedText> {convertSeconds(endTime)} </HighlightedText>
+        経過時間 <HighlightedText> {convertSeconds(endTime)} </HighlightedText>
       </p>
     </ResultOverviewStyle>
   )

@@ -70,6 +70,7 @@ const ContributorWrapper = styled.div`
   overflow-wrap: break-word;
   line-break: anywhere;
   line-height: 1.2;
+  color: ${({ theme }) => theme.colors.darkerGray};
 `
 
 const ContributorNameLabel = styled.div`
@@ -202,7 +203,7 @@ const QuestionScreen: FC = () => {
           />
         </ButtonWrapper>
       </QuizContainer>
-      <TopBtn onClick={onClickRetry}>Topに戻る</TopBtn>
+      <TopBtn onClick={onClickRetry}>TOPに戻る</TopBtn>
       {/* timer or finish quiz modal*/}
       {(showTimerModal || showResultModal) && (
         <ModalWrapper

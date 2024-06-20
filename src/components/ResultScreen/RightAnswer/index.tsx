@@ -19,21 +19,21 @@ const RightAnswerContainer = styled.p`
   font-weight: 400;
   color: ${({ theme }) => theme.colors.darkerGray};
   margin-top: 15px;
-  line-height: 1.5;
+  line-height: 1.3;
 `
 
 const Correct = styled.span`
   font-weight: 500;
   font-size: 16px;
   color: #12b40e;
-  margin-bottom: 15px;
+  margin-bottom: -10px;
   display: block;
 `
 const InCorrect = styled.span`
   font-weight: 500;
   font-size: 16px;
   color: #ff143e;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   display: block;
 `
 
@@ -42,13 +42,13 @@ const SourceLinkWrapper = styled.div`
   overflow-wrap: break-word;
   line-break: anywhere;
   color: ${({ theme }) => theme.colors.darkerGray};
-  margin-top: 15px;
+  margin-top: 6px;
   line-height: 1.5;
-  font-size: 14px;
+  font-size: 13px;
 `
 
 const SourceLink = styled.a`
-  color: ${({ theme }) => theme.colors.themeText};
+  color: ${({ theme }) => theme.colors.darkerGray};
 `
 
 const ContributorWrapper = styled.div`
@@ -56,8 +56,9 @@ const ContributorWrapper = styled.div`
   word-break: break-all;
   overflow-wrap: break-word;
   line-break: anywhere;
-  margin-top: 20px;
+  margin-top: 16px;
   line-height: 1.5;
+  color: ${({ theme }) => theme.colors.darkerGray};
 `
 
 const ContributorLabel = styled.span`
@@ -65,7 +66,8 @@ const ContributorLabel = styled.span`
 `
 
 const ContributorRoomWrapper = styled.div`
-  margin-top: 4px;
+  margin-top: 6px;
+  color: ${({ theme }) => theme.colors.darkerGray};
 `
 
 const ContributorRoomName = styled.a`
@@ -85,17 +87,15 @@ const RightAnswer: FC<RightAnswerProps> = ({
   return (
     <>
       <RightAnswerContainer>
-        {isMatch && <Correct>正解</Correct>}
         {!isMatch && (
           <>
-            <InCorrect>不正解</InCorrect>
-            {`正解: `}
+            {`正解 `}
             {correctAnswers.map((item: string, index: number) => {
               const label = String.fromCharCode(65 + choices.indexOf(item))
 
               return (
                 <HighlightedText key={index} themeText>
-                  {`${label} (${item})${index !== correctAnswers.length - 1 ? ', ' : ''}`}
+                  {label}
                 </HighlightedText>
               )
             })}
@@ -104,13 +104,12 @@ const RightAnswer: FC<RightAnswerProps> = ({
       </RightAnswerContainer>
       {explanation && (
         <RightAnswerContainer>
-          {`解説: `}
           <HighlightedText themeText>{explanation}</HighlightedText>
         </RightAnswerContainer>
       )}
       {source && (
         <SourceLinkWrapper>
-          {`出典URL: `}
+          {`出典URL `}
           <HighlightedText themeText>
             <SourceLink href={source.url} target="_blank">
               {source.title}
@@ -120,11 +119,11 @@ const RightAnswer: FC<RightAnswerProps> = ({
       )}
       {contributor && (
         <ContributorWrapper>
-          <ContributorLabel>出題者: </ContributorLabel>
+          <ContributorLabel>出題者 </ContributorLabel>
           {contributor.name}
           {contributor.roomName && contributor.url && (
             <ContributorRoomWrapper>
-              <ContributorLabel>出題者のオプチャ: </ContributorLabel>
+              <ContributorLabel>出題者のオプチャ </ContributorLabel>
               <ContributorRoomName href={contributor.url} target="_blank">
                 {contributor.roomName}
               </ContributorRoomName>

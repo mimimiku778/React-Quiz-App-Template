@@ -54,16 +54,16 @@ const QuizDetailsScreen = () => {
         <AppTitle>オプチャ検定 練習問題</AppTitle>
         <DetailTextContainer>
           <DetailText>
-            検定レベル: <HighlightedText>{selectedQuizTopic}</HighlightedText>
+            検定レベル <HighlightedText>{selectedQuizTopic}</HighlightedText>
           </DetailText>
           <DetailText>
-            出題数: <HighlightedText>{totalQuestions}</HighlightedText> 問
+            出題数 <HighlightedText>{totalQuestions}</HighlightedText> 問
           </DetailText>
           {/* <DetailText>
             合計点数: <HighlightedText>{totalScore}</HighlightedText> 点
           </DetailText> */}
           <DetailText>
-            制限時間: <HighlightedText>{convertSeconds(totalTime)}</HighlightedText>
+            制限時間 <HighlightedText>{convertSeconds(totalTime)}</HighlightedText>
           </DetailText>
         </DetailTextContainer>
         <Button
