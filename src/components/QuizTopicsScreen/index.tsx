@@ -91,7 +91,7 @@ const QuizTopicsScreen: React.FC = () => {
   const goToQuizDetailsScreen = () => {
     setCurrentScreen(ScreenTypes.QuizDetailsScreen)
   }
-
+ 
   return (
     <PageCenter light justifyCenter>
       <CenterCardContainer>
@@ -101,7 +101,9 @@ const QuizTopicsScreen: React.FC = () => {
         <Heading>
           <HighlightedText>オプチャ検定 </HighlightedText>の練習問題に挑戦しよう！
         </Heading>
-        {quizTopics.length > 1 && <DetailText>検定レベルを選択してください。</DetailText>}
+        {quizTopics.filter((t) => !t.disabled).length > 1 && (
+          <DetailText>検定レベルを選択してください。</DetailText>
+        )}
         <SelectButtonContainer>
           {quizTopics.map(({ title, icon, disabled }) => (
             <SelectButton
