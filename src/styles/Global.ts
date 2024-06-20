@@ -203,6 +203,7 @@ export const HighlightedText = styled.span<{ themeText?: boolean }>`
 export const LogoContainer = styled.div`
   text-align: center;
   margin-bottom: 50px;
+  position: relative;
   @media ${device.md} {
     margin-bottom: 30px;
   }

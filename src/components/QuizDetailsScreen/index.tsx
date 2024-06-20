@@ -9,7 +9,7 @@ import {
   PageCenter,
 } from '../../styles/Global'
 import { ScreenTypes } from '../../types'
-import { convertSeconds } from '../../utils/helpers'
+import { convertSeconds, refreshPage } from '../../utils/helpers'
 
 import Button from '../ui/Button'
 
@@ -43,6 +43,14 @@ const Paragraph = styled.p`
   line-height: 1.3;
 `
 
+const TopBtn = styled.div`
+  color: ${({ theme }) => theme.colors.themeText};
+  font-size: 15px;
+  margin-top: 2rem;
+  margin-bottom: -2rem;
+  cursor: pointer;
+`
+
 const QuizDetailsScreen = () => {
   const { setCurrentScreen, quizDetails } = useQuiz()
 
@@ -50,6 +58,10 @@ const QuizDetailsScreen = () => {
 
   const goToQuestionScreen = () => {
     setCurrentScreen(ScreenTypes.QuestionScreen)
+  }
+
+  const onClickRetry = () => {
+    refreshPage()
   }
 
   return (
@@ -62,7 +74,7 @@ const QuizDetailsScreen = () => {
         <Paragraph>問題集からランダムで出題されます。</Paragraph>
         <DetailTextContainer>
           <DetailText>
-            検定レベル <HighlightedText>{selectedQuizTopic}</HighlightedText>
+            練習レベル <HighlightedText>{selectedQuizTopic}</HighlightedText>
           </DetailText>
           <DetailText>
             出題数 <HighlightedText>{totalQuestions}</HighlightedText> 問
@@ -82,6 +94,7 @@ const QuizDetailsScreen = () => {
           bold
         />
       </CenterCardContainer>
+      <TopBtn onClick={onClickRetry}>TOPに戻る</TopBtn>
     </PageCenter>
   )
 }

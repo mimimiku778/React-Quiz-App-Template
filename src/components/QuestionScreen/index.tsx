@@ -212,7 +212,7 @@ const QuestionScreen: FC = () => {
           subtitle={`合計 ${result.length} 個の問題に回答しました。`}
           onClick={handleModal}
           icon={showResultModal ? <CheckIcon /> : <TimerIcon />}
-          buttonTitle="採点結果"
+          buttonTitle="結果を見る"
         />
       )}
     </PageCenter>

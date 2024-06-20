@@ -52,7 +52,7 @@ const ResultOverview: FC<ResultOverviewProps> = ({ result }) => {
   return (
     <ResultOverviewStyle>
       <p>
-        検定レベル <HighlightedText> {quizDetails.selectedQuizTopic} </HighlightedText>
+        練習レベル <HighlightedText> {quizDetails.selectedQuizTopic} </HighlightedText>{' '}
       </p>
       <p>
         結果 <HighlightedText> {calculateStatus}</HighlightedText>
