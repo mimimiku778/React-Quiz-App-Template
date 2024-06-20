@@ -22,20 +22,21 @@ const RightAnswerContainer = styled.p`
   line-height: 1.3;
 `
 
-const Correct = styled.span`
+/* const Correct = styled.span`
   font-weight: 500;
   font-size: 16px;
   color: #12b40e;
   margin-bottom: -10px;
   display: block;
-`
-const InCorrect = styled.span`
+` */
+
+/* const InCorrect = styled.span`
   font-weight: 500;
   font-size: 16px;
   color: #ff143e;
   margin-bottom: 10px;
   display: block;
-`
+` */
 
 const SourceLinkWrapper = styled.div`
   word-break: break-all;
