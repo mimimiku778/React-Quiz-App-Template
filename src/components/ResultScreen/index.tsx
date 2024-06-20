@@ -130,11 +130,6 @@ const Answer = styled.li<AnswerProps>`
   }
 ` */
 
-const TopBtn = styled.div`
-  margin-top: -5px;
-  padding-bottom: 15px;
-`
-
 const ResultScreen: FC = () => {
   const { result } = useQuiz()
 
@@ -147,17 +142,6 @@ const ResultScreen: FC = () => {
       <LogoContainer>
         <AppLogo />
       </LogoContainer>
-      <TopBtn>
-        <Flex flxEnd>
-          <Button
-            text="TOP"
-            onClick={onClickRetry}
-            icon={<Refresh />}
-            iconPosition="left"
-            bold
-          />
-        </Flex>
-      </TopBtn>
       <InnerContainer>
         <ResultOverview result={result} />
         {result.map(
@@ -180,7 +164,7 @@ const ResultScreen: FC = () => {
           ) => {
             return (
               <QuestionContainer key={question}>
-                <ResizableBox width="90%">
+                <ResizableBox width="100%">
                   <Flex gap="4px">
                     <QuestionNumber>{`${index + 1}. `}</QuestionNumber>
                     <QuestionStyle>{question}</QuestionStyle>
@@ -223,17 +207,15 @@ const ResultScreen: FC = () => {
           }
         )}
       </InnerContainer>
-      <TopBtn>
-        <Flex flxEnd>
-          <Button
-            text="TOP"
-            onClick={onClickRetry}
-            icon={<Refresh />}
-            iconPosition="left"
-            bold
-          />
-        </Flex>
-      </TopBtn>
+      <Flex flxEnd>
+        <Button
+          text="TOP"
+          onClick={onClickRetry}
+          icon={<Refresh />}
+          iconPosition="left"
+          bold
+        />
+      </Flex>
     </ResultScreenContainer>
   )
 }
