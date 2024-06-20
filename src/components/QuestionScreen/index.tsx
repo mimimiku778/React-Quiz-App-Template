@@ -12,6 +12,7 @@ import Button from '../ui/Button'
 import ModalWrapper from '../ui/ModalWrapper'
 import Question from './Question'
 import QuizHeader from './QuizHeader'
+import { refreshPage } from '../../utils/helpers'
 
 const QuizContainer = styled.div<{ selectedAnswer: boolean }>`
   width: 900px;
@@ -64,7 +65,6 @@ const ButtonWrapper = styled.div`
   }
 `
 const ContributorWrapper = styled.div`
-  color: ${({ theme }) => theme.colors.darkerGray};
   font-size: 12px;
   word-break: break-all;
   overflow-wrap: break-word;
@@ -75,6 +75,14 @@ const ContributorWrapper = styled.div`
 const ContributorNameLabel = styled.div`
   margin-bottom: 6px;
 `
+
+const TopBtn = styled.div`
+  color: ${({ theme }) => theme.colors.white};
+  font-size: 15px;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+`
+
 const QuestionScreen: FC = () => {
   const [activeQuestion, setActiveQuestion] = useState<number>(0)
   const [selectedAnswer, setSelectedAnswer] = useState<string[]>([])
@@ -151,6 +159,10 @@ const QuestionScreen: FC = () => {
   // timer hooks, handle conditions related to time
   useTimer(timer, quizDetails, setEndTime, setTimer, setShowTimerModal, showResultModal)
 
+  const onClickRetry = () => {
+    refreshPage()
+  }
+
   return (
     <PageCenter>
       <LogoContainer>
@@ -190,6 +202,7 @@ const QuestionScreen: FC = () => {
           />
         </ButtonWrapper>
       </QuizContainer>
+      <TopBtn onClick={onClickRetry}>Topに戻る</TopBtn>
       {/* timer or finish quiz modal*/}
       {(showTimerModal || showResultModal) && (
         <ModalWrapper
