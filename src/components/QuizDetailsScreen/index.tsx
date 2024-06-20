@@ -36,6 +36,13 @@ const DetailText = styled.p`
   line-height: 1.3;
 `
 
+const Paragraph = styled.p`
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 15px;
+  line-height: 1.3;
+`
+
 const QuizDetailsScreen = () => {
   const { setCurrentScreen, quizDetails } = useQuiz()
 
@@ -52,6 +59,7 @@ const QuizDetailsScreen = () => {
           <AppLogo />
         </LogoContainer>
         <AppTitle>オプチャ検定 練習問題</AppTitle>
+        <Paragraph>問題集からランダムで出題されます。</Paragraph>
         <DetailTextContainer>
           <DetailText>
             検定レベル <HighlightedText>{selectedQuizTopic}</HighlightedText>
