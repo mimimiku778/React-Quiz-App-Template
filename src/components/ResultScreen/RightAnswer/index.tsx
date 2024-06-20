@@ -19,7 +19,7 @@ const RightAnswerContainer = styled.p`
   font-weight: 400;
   color: ${({ theme }) => theme.colors.darkerGray};
   margin-top: 15px;
-  line-height: 1.3;
+  line-height: 1.35;
 `
 
 /* const Correct = styled.span`

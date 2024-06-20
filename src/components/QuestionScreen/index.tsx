@@ -82,6 +82,7 @@ const TopBtn = styled.div`
   font-size: 15px;
   margin-top: -1rem;
   margin-bottom: 1rem;
+  cursor: pointer;
 `
 
 const QuestionScreen: FC = () => {
