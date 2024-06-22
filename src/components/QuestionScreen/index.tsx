@@ -107,6 +107,7 @@ const QuestionScreen: FC = () => {
     setTimer,
     setEndTime,
   } = useQuiz()
+
   const isSingleQuiz = quizDetails.totalQuestions === 1
 
   const currentQuestion = questions[activeQuestion]
@@ -156,7 +157,7 @@ const QuestionScreen: FC = () => {
   const isSelected = selectedAnswer.length > 0
 
   useEffect(() => {
-    isSelected && onClickNext()
+    isSelected && isSingleQuiz && onClickNext()
   }, [isSelected])
 
   const handleModal = () => {
