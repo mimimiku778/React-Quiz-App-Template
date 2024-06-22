@@ -10,11 +10,15 @@ import ResultScreen from '../ResultScreen'
 import SplashScreen from '../SplashScreen'
 
 function Main() {
-  const { currentScreen, setCurrentScreen } = useQuiz()
+  const { currentScreen, setCurrentScreen, quizDetails } = useQuiz()
 
   useEffect(() => {
     setTimeout(() => {
-      setCurrentScreen(ScreenTypes.QuizTopicsScreen)
+      setCurrentScreen(
+        quizDetails.totalQuestions > 1
+          ? ScreenTypes.QuizTopicsScreen
+          : ScreenTypes.QuestionScreen
+      )
     }, 1000)
   }, [setCurrentScreen])
 

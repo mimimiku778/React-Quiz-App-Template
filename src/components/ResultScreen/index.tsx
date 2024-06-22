@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 
 import { AppLogo, Refresh } from '../../config/icons'
@@ -131,11 +131,17 @@ const Answer = styled.li<AnswerProps>`
 ` */
 
 const ResultScreen: FC = () => {
-  const { result } = useQuiz()
+  const { result, questions, setResult } = useQuiz()
 
   const onClickRetry = () => {
     refreshPage()
   }
+
+  useEffect(() => {
+    if (!result.length) {
+      setResult([{ ...questions[0], selectedAnswer: '', isMatch: '' }])
+    }
+  }, [])
 
   return (
     <ResultScreenContainer>
@@ -166,7 +172,9 @@ const ResultScreen: FC = () => {
               <QuestionContainer key={question}>
                 <ResizableBox width="100%">
                   <Flex gap="4px">
-                    <QuestionNumber>{`${index + 1}. `}</QuestionNumber>
+                    {questions.length < 1 && (
+                      <QuestionNumber>{`${index + 1}. `}</QuestionNumber>
+                    )}
                     <QuestionStyle>{question}</QuestionStyle>
                   </Flex>
                   {id && <QuestionId>問題ID {id}</QuestionId>}

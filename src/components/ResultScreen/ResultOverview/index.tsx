@@ -20,6 +20,13 @@ const ResultOverviewStyle = styled.div`
   }
 `
 
+const Score = styled.div<{ right: boolean }>`
+  color: ${({ right, theme }) =>
+    right ? `${theme.colors.success}` : `${theme.colors.danger}`};
+  font-size: 26px;
+  font-weight: bold;
+`
+
 interface ResultOverviewProps {
   result: Result[]
 }
@@ -39,7 +46,7 @@ const ResultOverview: FC<ResultOverviewProps> = ({ result }) => {
     isInit.current = endTime
   }
 
-  //const totalQuestionAttempted = result.length
+  const totalQuestionAttempted = result.length
 
   const obtainedScore = result
     .filter((item) => item.isMatch && typeof item.score === 'number')
@@ -49,24 +56,40 @@ const ResultOverview: FC<ResultOverviewProps> = ({ result }) => {
   const calculateStatus =
     (obtainedScore / quizDetails.totalScore) * 100 >= 90 ? '合格' : '不合格'
 
+  const endTimeString = convertSeconds(endTime)
+
   return (
     <ResultOverviewStyle>
+      {quizDetails.totalQuestions === 1 && totalQuestionAttempted && (
+        <p>
+          <HighlightedText>
+            <Score right={!!obtainedScore}>
+              {obtainedScore ? '正解' : result[0].selectedAnswer ? '不正解' : '時間切れ'}
+            </Score>
+          </HighlightedText>
+        </p>
+      )}
       <p>
         練習レベル <HighlightedText> {quizDetails.selectedQuizTopic} </HighlightedText>{' '}
       </p>
-      <p>
-        結果 <HighlightedText> {calculateStatus}</HighlightedText>
-      </p>
-      <p>
-        正解 <HighlightedText> {obtainedScore} </HighlightedText>/{' '}
-        {quizDetails.totalScore}
-      </p>
+      {quizDetails.totalQuestions > 1 && (
+        <>
+          <p>
+            結果 <HighlightedText> {calculateStatus}</HighlightedText>
+          </p>
+          <p>
+            正解 <HighlightedText> {obtainedScore} </HighlightedText>/{' '}
+            {quizDetails.totalScore}
+          </p>
+        </>
+      )}
       {/* <p>
         回答した問題数: <HighlightedText> {totalQuestionAttempted} </HighlightedText>/{' '}
         {quizDetails.totalQuestions}
       </p> */}
       <p>
-        経過時間 <HighlightedText> {convertSeconds(endTime)} </HighlightedText>
+        経過時間{' '}
+        <HighlightedText>{endTimeString ? endTimeString : '0 秒'}</HighlightedText>
       </p>
     </ResultOverviewStyle>
   )

@@ -1,5 +1,6 @@
 import { createContext, useContext } from 'react'
 import { QuizContextTypes, ScreenTypes } from '../types'
+import { react } from '../data/QuizQuestions/react'
 
 export const initialState: QuizContextTypes = {
   currentScreen: ScreenTypes.SplashScreen,
@@ -15,7 +16,7 @@ export const initialState: QuizContextTypes = {
   endTime: 0,
   setEndTime: () => {},
   quizDetails: {
-    totalQuestions: 0,
+    totalQuestions: react.totalQuestions,
     totalScore: 0,
     totalTime: 0,
     selectedQuizTopic: 'ブロンズ',

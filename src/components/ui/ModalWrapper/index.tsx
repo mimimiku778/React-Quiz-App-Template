@@ -65,7 +65,7 @@ const ModalWrapper: FC<ModalWrapperProps> = ({
         {icon}
         <ModalTitle>{title}</ModalTitle>
         <ModalSubtitle>{subtitle}</ModalSubtitle>
-        <Button text={buttonTitle} onClick={onClick} bold big />
+        {buttonTitle && <Button text={buttonTitle} onClick={onClick} bold big />}
       </ModalContent>
     </ModalContainer>
   )

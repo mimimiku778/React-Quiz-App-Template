@@ -14,17 +14,17 @@ import Question from './Question'
 import QuizHeader from './QuizHeader'
 import { refreshPage } from '../../utils/helpers'
 
-const QuizContainer = styled.div<{ selectedAnswer: boolean }>`
+const QuizContainer = styled.div<{ selectedAnswer: boolean; isSingle: boolean }>`
   width: 900px;
   min-height: 500px;
   background: ${({ theme }) => theme.colors.cardBackground};
   border-radius: 4px;
-  padding: 30px 60px 80px 60px;
+  padding: 30px 60px ${({ isSingle }) => (!isSingle ? '80px' : '0')} 60px;
   margin-bottom: 70px;
   position: relative;
   @media ${device.md} {
     width: 100%;
-    padding: 15px 15px 80px 15px;
+    padding: 15px 15px ${({ isSingle }) => (!isSingle ? '80px' : '0')} 15px;
   }
   button {
     span {
@@ -101,6 +101,7 @@ const QuestionScreen: FC = () => {
     setTimer,
     setEndTime,
   } = useQuiz()
+  const isSingleQuiz = quizDetails.totalQuestions === 1
 
   const currentQuestion = questions[activeQuestion]
 
@@ -144,6 +145,10 @@ const QuestionScreen: FC = () => {
         setSelectedAnswer([name])
       }
     }
+
+    if (isSingleQuiz) {
+      onClickNext()
+    }
   }
 
   const handleModal = () => {
@@ -153,6 +158,11 @@ const QuestionScreen: FC = () => {
 
   // to prevent scrolling when modal is opened
   useEffect(() => {
+    if (showResultModal && isSingleQuiz) {
+      setCurrentScreen(ScreenTypes.ResultScreen)
+      return
+    }
+
     if (showTimerModal || showResultModal) {
       document.body.style.overflow = 'hidden'
     }
@@ -170,7 +180,7 @@ const QuestionScreen: FC = () => {
       <LogoContainer>
         <AppLogo />
       </LogoContainer>
-      <QuizContainer selectedAnswer={selectedAnswer.length > 0}>
+      <QuizContainer selectedAnswer={selectedAnswer.length > 0} isSingle={isSingleQuiz}>
         <QuizHeader
           activeQuestion={activeQuestion}
           totalQuestions={quizDetails.totalQuestions}
@@ -188,31 +198,33 @@ const QuestionScreen: FC = () => {
         />
         <ButtonWrapper>
           <ContributorWrapper>
-            {contributor && (
+            {contributor && !isSingleQuiz && (
               <>
                 <ContributorNameLabel>出題者</ContributorNameLabel>
                 <ContributorWrapper>{contributor.name}</ContributorWrapper>
               </>
             )}
           </ContributorWrapper>
-          <Button
-            text={activeQuestion === questions.length - 1 ? '完了' : '次へ'}
-            onClick={onClickNext}
-            icon={<Next />}
-            iconPosition="right"
-            disabled={selectedAnswer.length === 0}
-          />
+          {!isSingleQuiz && (
+            <Button
+              text={activeQuestion === questions.length - 1 ? '完了' : '次へ'}
+              onClick={onClickNext}
+              icon={<Next />}
+              iconPosition="right"
+              disabled={selectedAnswer.length === 0}
+            />
+          )}
         </ButtonWrapper>
       </QuizContainer>
       <TopBtn onClick={onClickRetry}>TOPに戻る</TopBtn>
       {/* timer or finish quiz modal*/}
-      {(showTimerModal || showResultModal) && (
+      {(showTimerModal || (showResultModal && !isSingleQuiz)) && (
         <ModalWrapper
           title={showResultModal ? '完了!' : '時間切れ!'}
-          subtitle={`合計 ${result.length} 個の問題に回答しました。`}
+          subtitle={!isSingleQuiz ? `合計 ${result.length} 個の問題に回答しました。` : ''}
           onClick={handleModal}
           icon={showResultModal ? <CheckIcon /> : <TimerIcon />}
-          buttonTitle="結果を見る"
+          buttonTitle={!isSingleQuiz ? `結果を見る` : '解説を見る'}
         />
       )}
     </PageCenter>
