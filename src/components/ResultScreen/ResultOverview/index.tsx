@@ -27,6 +27,11 @@ const Score = styled.span<{ right: boolean }>`
   font-weight: bold;
 `
 
+const Pass = styled.span`
+  font-size: 26px;
+  font-weight: bold;
+`
+
 interface ResultOverviewProps {
   result: Result[]
 }
@@ -69,15 +74,19 @@ const ResultOverview: FC<ResultOverviewProps> = ({ result }) => {
           </HighlightedText>
         </p>
       )}
+      {quizDetails.totalQuestions > 1 && (
+        <p>
+          <HighlightedText>
+            <Pass>{calculateStatus}</Pass>
+          </HighlightedText>
+        </p>
+      )}
       <p>
         {quizDetails.totalQuestions > 1 ? '練習レベル' : '問題レベル'}{' '}
         <HighlightedText>{quizDetails.selectedQuizTopic}</HighlightedText>
       </p>
       {quizDetails.totalQuestions > 1 && (
         <>
-          <p>
-            結果 <HighlightedText> {calculateStatus}</HighlightedText>
-          </p>
           <p>
             正解 <HighlightedText> {obtainedScore} </HighlightedText>/{' '}
             {quizDetails.totalScore}
