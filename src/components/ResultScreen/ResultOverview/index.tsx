@@ -70,7 +70,8 @@ const ResultOverview: FC<ResultOverviewProps> = ({ result }) => {
         </p>
       )}
       <p>
-        練習レベル <HighlightedText> {quizDetails.selectedQuizTopic} </HighlightedText>{' '}
+        {quizDetails.totalQuestions > 1 ? '練習レベル' : '問題レベル'}{' '}
+        <HighlightedText>{quizDetails.selectedQuizTopic}</HighlightedText>
       </p>
       {quizDetails.totalQuestions > 1 && (
         <>
@@ -81,15 +82,16 @@ const ResultOverview: FC<ResultOverviewProps> = ({ result }) => {
             正解 <HighlightedText> {obtainedScore} </HighlightedText>/{' '}
             {quizDetails.totalScore}
           </p>
+          <p>
+            経過時間{' '}
+            <HighlightedText>{endTimeString ? endTimeString : '0 秒'}</HighlightedText>
+          </p>
         </>
       )}
       {/* <p>
         回答した問題数: <HighlightedText> {totalQuestionAttempted} </HighlightedText>/{' '}
         {quizDetails.totalQuestions}
       </p> */}
-      <p>
-        経過時間 <HighlightedText>{endTimeString ? endTimeString : '0 秒'}</HighlightedText>
-      </p>
     </ResultOverviewStyle>
   )
 }
