@@ -190,6 +190,7 @@ const QuestionScreen: FC = () => {
       </LogoContainer>
       <QuizContainer selectedAnswer={selectedAnswer.length > 0} isSingle={isSingleQuiz}>
         <QuizHeader
+          isSingle={isSingleQuiz}
           activeQuestion={activeQuestion}
           totalQuestions={quizDetails.totalQuestions}
           timer={timer}

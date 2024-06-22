@@ -22,15 +22,23 @@ interface QuizHeaderProps {
   activeQuestion: number
   totalQuestions: number
   timer: number
+  isSingle: boolean
 }
 
-const QuizHeader: FC<QuizHeaderProps> = ({ activeQuestion, totalQuestions, timer }) => {
+const QuizHeader: FC<QuizHeaderProps> = ({
+  activeQuestion,
+  totalQuestions,
+  timer,
+  isSingle,
+}) => {
   return (
-    <Flex spaceBetween gap="6px">
-      <div>
-        <ActiveQuestionNo>{addLeadingZero(activeQuestion + 1)}</ActiveQuestionNo>
-        <TotalQuestionNo>/{addLeadingZero(totalQuestions)}</TotalQuestionNo>
-      </div>
+    <Flex spaceBetween={!isSingle} center={isSingle} gap="6px">
+      {!isSingle && (
+        <div>
+          <ActiveQuestionNo>{addLeadingZero(activeQuestion + 1)}</ActiveQuestionNo>
+          <TotalQuestionNo>/{addLeadingZero(totalQuestions)}</TotalQuestionNo>
+        </div>
+      )}
       <Flex>
         <Counter time={`${formatTime(timer)}`} />
       </Flex>
