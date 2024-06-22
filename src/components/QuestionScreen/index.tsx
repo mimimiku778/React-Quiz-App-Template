@@ -151,11 +151,13 @@ const QuestionScreen: FC = () => {
         setSelectedAnswer([name])
       }
     }
-
-    if (isSingleQuiz) {
-      onClickNext()
-    }
   }
+
+  const isSelected = selectedAnswer.length > 0
+
+  useEffect(() => {
+    isSelected && onClickNext()
+  }, [isSelected])
 
   const handleModal = () => {
     setCurrentScreen(ScreenTypes.ResultScreen)

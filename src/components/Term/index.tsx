@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-const Term = styled.div`
+const Term = styled.span`
   font-size: 11px;
-  line-height: 1.5;
+  line-height: 1.3;
 `
 
 const TermComponent: React.FC = () => {

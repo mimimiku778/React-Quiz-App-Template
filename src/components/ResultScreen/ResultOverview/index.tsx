@@ -20,7 +20,7 @@ const ResultOverviewStyle = styled.div`
   }
 `
 
-const Score = styled.div<{ right: boolean }>`
+const Score = styled.span<{ right: boolean }>`
   color: ${({ right, theme }) =>
     right ? `${theme.colors.success}` : `${theme.colors.danger}`};
   font-size: 26px;
@@ -88,8 +88,7 @@ const ResultOverview: FC<ResultOverviewProps> = ({ result }) => {
         {quizDetails.totalQuestions}
       </p> */}
       <p>
-        経過時間{' '}
-        <HighlightedText>{endTimeString ? endTimeString : '0 秒'}</HighlightedText>
+        経過時間 <HighlightedText>{endTimeString ? endTimeString : '0 秒'}</HighlightedText>
       </p>
     </ResultOverviewStyle>
   )
