@@ -13,6 +13,7 @@ import {
 import { ScreenTypes } from '../../types'
 
 import Button from '../ui/Button'
+import TermComponent from '../Term'
 
 const Heading = styled.h2`
   font-size: 26px;
@@ -78,11 +79,10 @@ const SelectButtonText = styled.span`
     font-weight: 500;
   }
 `
-const Term = styled.div`
-  font-size: 11px;
-  color: #777;
+
+const TermWrapper = styled.div`
   margin-top: 1rem;
-  line-height: 1.5;
+  color: ${({ theme }) => theme.colors.darkerGray};
 `
 
 const QuizTopicsScreen: React.FC = () => {
@@ -119,11 +119,9 @@ const QuizTopicsScreen: React.FC = () => {
         </SelectButtonContainer>
         <Button text="挑戦する" onClick={goToQuizDetailsScreen} bold />
       </CenterCardContainer>
-      <Term>
-        「オプチャ検定」はLINEオープンチャット非公式の検定です。
-        LINEヤフー社はこの内容に関与していません。
-        監修しているのは一部のLINEオープンチャット公認メンターです。
-      </Term>
+      <TermWrapper>
+        <TermComponent />
+      </TermWrapper>
     </PageCenter>
   )
 }

@@ -13,14 +13,15 @@ import ModalWrapper from '../ui/ModalWrapper'
 import Question from './Question'
 import QuizHeader from './QuizHeader'
 import { refreshPage } from '../../utils/helpers'
+import TermComponent from '../Term'
 
 const QuizContainer = styled.div<{ selectedAnswer: boolean; isSingle: boolean }>`
   width: 900px;
-  min-height: 500px;
+  min-height: ${({ isSingle }) => (!isSingle ? '500px' : '0')};
   background: ${({ theme }) => theme.colors.cardBackground};
   border-radius: 4px;
   padding: 30px 60px ${({ isSingle }) => (!isSingle ? '80px' : '0')} 60px;
-  margin-bottom: 70px;
+  margin-bottom: ${({ isSingle }) => (!isSingle ? '70px' : '0')};
   position: relative;
   @media ${device.md} {
     width: 100%;
@@ -77,12 +78,17 @@ const ContributorNameLabel = styled.div`
   margin-bottom: 6px;
 `
 
-const TopBtn = styled.div`
+const TopBtn = styled.div<{ isSingle: boolean }>`
   color: ${({ theme }) => theme.colors.white};
   font-size: 15px;
-  margin-top: -1rem;
+  margin-top: ${({ isSingle }) => (!isSingle ? '-1rem' : '3rem')};
   margin-bottom: 1rem;
   cursor: pointer;
+`
+
+const TermWrapper = styled.div`
+  margin-top: 1rem;
+  color: ${({ theme }) => theme.colors.white};
 `
 
 const QuestionScreen: FC = () => {
@@ -196,16 +202,16 @@ const QuestionScreen: FC = () => {
           selectedAnswer={selectedAnswer}
           id={id}
         />
-        <ButtonWrapper>
-          <ContributorWrapper>
-            {contributor && !isSingleQuiz && (
-              <>
-                <ContributorNameLabel>出題者</ContributorNameLabel>
-                <ContributorWrapper>{contributor.name}</ContributorWrapper>
-              </>
+        {!isSingleQuiz && (
+          <ButtonWrapper>
+            {contributor && (
+              <ContributorWrapper>
+                <>
+                  <ContributorNameLabel>出題者</ContributorNameLabel>
+                  <ContributorWrapper>{contributor.name}</ContributorWrapper>
+                </>
+              </ContributorWrapper>
             )}
-          </ContributorWrapper>
-          {!isSingleQuiz && (
             <Button
               text={activeQuestion === questions.length - 1 ? '完了' : '次へ'}
               onClick={onClickNext}
@@ -213,10 +219,14 @@ const QuestionScreen: FC = () => {
               iconPosition="right"
               disabled={selectedAnswer.length === 0}
             />
-          )}
-        </ButtonWrapper>
+          </ButtonWrapper>
+        )}
       </QuizContainer>
-      <TopBtn onClick={onClickRetry}>TOPに戻る</TopBtn>
+      {!isSingleQuiz && (
+        <TopBtn onClick={onClickRetry} isSingle={isSingleQuiz}>
+          TOPに戻る
+        </TopBtn>
+      )}
       {/* timer or finish quiz modal*/}
       {(showTimerModal || (showResultModal && !isSingleQuiz)) && (
         <ModalWrapper
@@ -226,6 +236,17 @@ const QuestionScreen: FC = () => {
           icon={showResultModal ? <CheckIcon /> : <TimerIcon />}
           buttonTitle={!isSingleQuiz ? `結果を見る` : '解説を見る'}
         />
+      )}
+
+      {isSingleQuiz && (
+        <>
+          <TopBtn onClick={onClickRetry} isSingle={isSingleQuiz}>
+            TOP
+          </TopBtn>
+          <TermWrapper>
+            <TermComponent />
+          </TermWrapper>
+        </>
       )}
     </PageCenter>
   )

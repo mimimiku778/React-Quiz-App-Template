@@ -12,6 +12,7 @@ import CodeSnippet from '../ui/CodeSnippet'
 import QuizImage from '../ui/QuizImage'
 import ResultOverview from './ResultOverview'
 import RightAnswer from './RightAnswer'
+import TermComponent from '../Term'
 
 const ResultScreenContainer = styled.div`
   max-width: 900px;
@@ -114,6 +115,11 @@ const Answer = styled.li<AnswerProps>`
   @media ${device.md} {
     font-weight: 400;
   }
+`
+
+const TermWrapper = styled.div`
+  margin-top: 2rem;
+  color: ${({ theme }) => theme.colors.darkerGray};
 `
 
 /* const Score = styled.span<{ right: boolean }>`
@@ -224,6 +230,9 @@ const ResultScreen: FC = () => {
           bold
         />
       </Flex>
+      <TermWrapper>
+        <TermComponent />
+      </TermWrapper>
     </ResultScreenContainer>
   )
 }
