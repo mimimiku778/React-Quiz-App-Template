@@ -126,6 +126,7 @@ export const Box = styled.div<BoxStyleTypes>`
 interface PageCenterTypes {
   light?: boolean
   justifyCenter?: boolean
+  initPaddingTop?: boolean
 }
 
 export const PageCenter = styled.div<PageCenterTypes>`
@@ -136,7 +137,7 @@ export const PageCenter = styled.div<PageCenterTypes>`
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  padding-top: 20px;
+  padding-top: ${({ initPaddingTop }) => initPaddingTop ? '20px' : '50px'};
   // due to flex direction column
   ${({ justifyCenter }) =>
     justifyCenter &&

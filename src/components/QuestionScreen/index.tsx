@@ -185,7 +185,7 @@ const QuestionScreen: FC = () => {
   }
 
   return (
-    <PageCenter>
+    <PageCenter initPaddingTop>
       <LogoContainer>
         <AppLogo />
       </LogoContainer>
