@@ -20,6 +20,9 @@ const RightAnswerContainer = styled.p`
   color: ${({ theme }) => theme.colors.darkerGray};
   margin-top: 15px;
   line-height: 1.35;
+  overflow-wrap: anywhere;
+  white-space: break-spaces;
+  line-break: anywhere;
 `
 
 /* const Correct = styled.span`

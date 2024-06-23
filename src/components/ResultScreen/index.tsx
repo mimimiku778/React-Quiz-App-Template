@@ -14,6 +14,8 @@ import ResultOverview from './ResultOverview'
 import RightAnswer from './RightAnswer'
 import TermComponent from '../Term'
 
+import { ReactComponent as CopyIcon } from '../../assets/icons/copy_icon_c.svg'
+
 const ResultScreenContainer = styled.div`
   max-width: 900px;
   margin: 60px auto;
@@ -39,8 +41,8 @@ const QuestionContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 40px;
+  flex-direction: column;
   @media ${device.md} {
-    flex-direction: column;
   }
 `
 
@@ -92,6 +94,9 @@ const Answer = styled.li<AnswerProps>`
   padding: 15px;
   color: ${({ theme }) => theme.colors.secondaryText};
   margin-top: clamp(13px, calc(10px + 6 * ((100vw - 600px) / 1320)), 16px);
+  overflow-wrap: anywhere;
+  white-space: break-spaces;
+  line-break: anywhere;
 
   // if user answer matches to correct answer make answer background success color otherwise danger color
   ${({ correct }) =>
@@ -136,11 +141,79 @@ const TermWrapper = styled.div`
   }
 ` */
 
+const ShareButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  gap: 12px;
+`
+
+const ShareTitle = styled.div`
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1;
+  margin: auto 0;
+`
+
+const ShareButton = styled.a`
+  width: 32px;
+  height: 32px;
+  display: flex;
+`
+
+const LinkButton = styled.div`
+  width: 32px;
+  height: 32px;
+  display: flex;
+  border-radius: 6px;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  svg {
+    rect {
+      stroke: ${({ theme }) => theme.colors.appLogo};
+    }
+    path {
+      fill: ${({ theme }) => theme.colors.appLogo};
+    }
+  }
+`
+
+interface ShareIconProps {
+  url: string
+  width?: number
+  height?: number
+  borderRadius?: number
+  backgroundColor?: string
+}
+
+const ShareIcon = styled.span<ShareIconProps>`
+  width: ${({ width }) => width ?? 32}px;
+  height: ${({ height }) => height ?? 32}px;
+  display: block;
+  margin: auto;
+  background-image: url(${({ url }) => url});
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: ${({ backgroundColor }) => backgroundColor ?? 'inherit'};
+  border-radius: ${({ borderRadius }) => borderRadius ?? 6}px;
+`
+
 const ResultScreen: FC = () => {
   const { result, questions, setResult } = useQuiz()
 
   const onClickRetry = () => {
     refreshPage()
+  }
+
+  async function copyUrl(text: string) {
+    try {
+      await window.navigator.clipboard.writeText(text)
+      alert('リンクをコピーしました')
+    } catch {
+      alert('コピーできませんでした\n(非対応ブラウザ)')
+    }
   }
 
   useEffect(() => {
@@ -174,6 +247,12 @@ const ResultScreen: FC = () => {
             },
             index: number
           ) => {
+            const shareTitle = `オプチャ検定｜Q.${id}`
+            const shareUrl = `https://openchat-review.me/accreditation?id=${id}`
+            const shareText = encodeURIComponent(`${shareTitle}\n${shareUrl}`)
+            const shareTwitterUrl = encodeURIComponent(shareUrl)
+            const shareTwitterText = encodeURIComponent(`${question}\n${shareTitle}\n`)
+
             return (
               <QuestionContainer key={question}>
                 <ResizableBox width="100%">
@@ -215,6 +294,29 @@ const ResultScreen: FC = () => {
                     />
                   </div>
                 </ResizableBox>
+                <ShareButtonWrapper>
+                  <ShareTitle>問題をシェアする</ShareTitle>
+                  <LinkButton onClick={() => copyUrl(`${shareTitle}\n${shareUrl}`)}>
+                    <CopyIcon width={20} height={20} />
+                  </LinkButton>
+                  <ShareButton
+                    href={`https://twitter.com/intent/tweet?url=${shareTwitterUrl}&text=${shareTwitterText}`}
+                    title="Xにポスト"
+                    target="_blank"
+                  >
+                    <ShareIcon
+                      url={'https://openchat-review.me/assets/twitter_x.svg'}
+                      backgroundColor="#000"
+                    />
+                  </ShareButton>
+                  <ShareButton
+                    href={`http://line.me/R/msg/text/?${shareText}`}
+                    title="LINEで送る"
+                    target="_blank"
+                  >
+                    <ShareIcon url={'https://openchat-review.me/assets/line.svg'} />
+                  </ShareButton>
+                </ShareButtonWrapper>
                 {/* <Score right={isMatch}>{`${isMatch ? score : 0} 点`}</Score> */}
               </QuestionContainer>
             )

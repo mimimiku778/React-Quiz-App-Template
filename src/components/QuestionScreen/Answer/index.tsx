@@ -33,12 +33,19 @@ const AnswerLabel = styled.label`
   padding: 18px;
   display: flex;
   cursor: pointer;
+  overflow-wrap: anywhere;
+  white-space: break-spaces;
+  line-break: anywhere;
   @media ${device.md} {
     padding: 14px;
   }
 `
 
-const ChoiceLabel = styled.span``
+const ChoiceLabel = styled.span`
+  white-space: nowrap;
+  line-break: unset;
+  overflow-wrap: unset;
+`
 
 interface AnswerProps {
   index: number
