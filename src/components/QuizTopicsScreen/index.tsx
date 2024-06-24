@@ -53,18 +53,18 @@ interface SelectButtonProps {
 const SelectButton = styled.div<SelectButtonProps>`
   background-color: ${({ disabled, theme }) =>
     disabled ? `${theme.colors.disabledCard}` : `${theme.colors.selectTopicBg}`};
-  outline: ${({ active, theme }) =>
+  border: ${({ active, theme }) =>
     active
       ? `2px solid ${theme.colors.themeColor}`
       : `1px solid ${theme.colors.disabledButton}`};
   transition: background-color 0.4s ease-out;
   border-radius: 10px;
-  padding: 14px 10px;
+  padding: ${({ active, theme }) => (active ? `13px 9px` : `14px 10px`)};
   display: flex;
   align-items: center;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   @media ${device.md} {
-    padding: 10px;
+    padding: ${({ active, theme }) => (active ? `9px` : `10px`)};
     tap-highlight-color: transparent;
     -webkit-tap-highlight-color: transparent;
   }
