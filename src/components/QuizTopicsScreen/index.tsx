@@ -53,7 +53,7 @@ interface SelectButtonProps {
 const SelectButton = styled.div<SelectButtonProps>`
   background-color: ${({ disabled, theme }) =>
     disabled ? `${theme.colors.disabledCard}` : `${theme.colors.selectTopicBg}`};
-  border: ${({ active, theme }) =>
+  outline: ${({ active, theme }) =>
     active
       ? `2px solid ${theme.colors.themeColor}`
       : `1px solid ${theme.colors.disabledButton}`};
