@@ -81,8 +81,23 @@ const SelectButtonText = styled.span`
 `
 
 const TermWrapper = styled.div`
-  margin-top: 1rem;
   color: ${({ theme }) => theme.colors.darkerGray};
+`
+
+
+const LinkWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  margin: 40px 0;
+`
+
+const PageLink = styled.a`
+  color: ${({ theme }) => theme.colors.themeText};
+  display: block;
+  width: fit-content;
 `
 
 const QuizTopicsScreen: React.FC = () => {
@@ -119,6 +134,11 @@ const QuizTopicsScreen: React.FC = () => {
         </SelectButtonContainer>
         <Button text="挑戦する" onClick={goToQuizDetailsScreen} bold />
       </CenterCardContainer>
+      <LinkWrapper>
+        <PageLink href="https://openchat-review.me/accreditation/login" target="_blank">
+          問題の投稿はこちらから！
+        </PageLink>
+      </LinkWrapper>
       <TermWrapper>
         <TermComponent />
       </TermWrapper>
