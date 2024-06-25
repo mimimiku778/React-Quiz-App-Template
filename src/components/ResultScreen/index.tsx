@@ -196,6 +196,8 @@ const PageLink = styled.a`
   color: ${({ theme }) => theme.colors.themeText};
   display: block;
   width: fit-content;
+  font-weight: 700;
+  font-size: 18px;
 `
 
 interface ShareIconProps {

@@ -84,6 +84,7 @@ const TopBtn = styled.div<{ isSingle: boolean }>`
   margin-top: ${({ isSingle }) => (!isSingle ? '-1rem' : '3rem')};
   margin-bottom: 1rem;
   cursor: pointer;
+  font-weight: 700;
 `
 
 const TermWrapper = styled.div`

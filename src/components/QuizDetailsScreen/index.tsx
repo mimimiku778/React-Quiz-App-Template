@@ -49,6 +49,7 @@ const TopBtn = styled.div`
   margin-top: 2rem;
   margin-bottom: -2rem;
   cursor: pointer;
+  font-weight: 700;
 `
 
 const QuizDetailsScreen = () => {
