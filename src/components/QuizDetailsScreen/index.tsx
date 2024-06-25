@@ -95,7 +95,7 @@ const QuizDetailsScreen = () => {
           bold
         />
       </CenterCardContainer>
-      <TopBtn onClick={onClickRetry}>TOPに戻る</TopBtn>
+      <TopBtn onClick={onClickRetry}>トップに戻る</TopBtn>
     </PageCenter>
   )
 }

@@ -13,7 +13,7 @@ import {
 import { ScreenTypes } from '../../types'
 
 import Button from '../ui/Button'
-import TermComponent from '../Term'
+import { DescriptionComponent, TermComponent } from '../Term'
 
 const Heading = styled.h2`
   font-size: 26px;
@@ -84,14 +84,13 @@ const TermWrapper = styled.div`
   color: ${({ theme }) => theme.colors.darkerGray};
 `
 
-
 const LinkWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 12px;
-  margin: 40px 0;
+  margin: 50px 0 20px 0;
 `
 
 const PageLink = styled.a`
@@ -108,7 +107,7 @@ const QuizTopicsScreen: React.FC = () => {
   const goToQuizDetailsScreen = () => {
     setCurrentScreen(ScreenTypes.QuizDetailsScreen)
   }
- 
+
   return (
     <PageCenter light justifyCenter>
       <CenterCardContainer>
@@ -141,6 +140,9 @@ const QuizTopicsScreen: React.FC = () => {
           問題の投稿はこちらから！
         </PageLink>
       </LinkWrapper>
+      <TermWrapper>
+        <DescriptionComponent />
+      </TermWrapper>
       <TermWrapper>
         <TermComponent />
       </TermWrapper>

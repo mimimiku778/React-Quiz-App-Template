@@ -12,7 +12,7 @@ import CodeSnippet from '../ui/CodeSnippet'
 import QuizImage from '../ui/QuizImage'
 import ResultOverview from './ResultOverview'
 import RightAnswer from './RightAnswer'
-import TermComponent from '../Term'
+import { TermComponent } from '../Term'
 
 import { ReactComponent as CopyIcon } from '../../assets/icons/copy_icon_c.svg'
 
@@ -189,7 +189,7 @@ const LinkWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 12px;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 `
 
 const PageLink = styled.a`
@@ -350,11 +350,12 @@ const ResultScreen: FC = () => {
       </LinkWrapper>
       <Flex flxEnd>
         <Button
-          text="TOP"
+          text="トップに戻る"
           onClick={onClickRetry}
           icon={<Refresh />}
           iconPosition="left"
           bold
+          big
         />
       </Flex>
       <TermWrapper>

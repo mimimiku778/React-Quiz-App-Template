@@ -13,7 +13,7 @@ import ModalWrapper from '../ui/ModalWrapper'
 import Question from './Question'
 import QuizHeader from './QuizHeader'
 import { refreshPage } from '../../utils/helpers'
-import TermComponent from '../Term'
+import { HeaderDescText, TermComponent } from '../Term'
 
 const QuizContainer = styled.div<{ selectedAnswer: boolean; isSingle: boolean }>`
   width: 900px;
@@ -80,16 +80,29 @@ const ContributorNameLabel = styled.div`
 
 const TopBtn = styled.div<{ isSingle: boolean }>`
   color: ${({ theme }) => theme.colors.white};
-  font-size: 15px;
+  font-size: 18px;
   margin-top: ${({ isSingle }) => (!isSingle ? '-1rem' : '3rem')};
   margin-bottom: 1rem;
   cursor: pointer;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  border-radius: 10px;
+  min-height: 40px;
+  min-width: 150px;
 `
 
 const TermWrapper = styled.div`
-  margin-top: 1rem;
   color: ${({ theme }) => theme.colors.white};
+`
+
+const SiteDescWrapper = styled.div`
+  color: ${({ theme }) => theme.colors.white};
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 16px;
 `
 
 const QuestionScreen: FC = () => {
@@ -229,7 +242,7 @@ const QuestionScreen: FC = () => {
       </QuizContainer>
       {!isSingleQuiz && (
         <TopBtn onClick={onClickRetry} isSingle={isSingleQuiz}>
-          TOPに戻る
+          トップに戻る
         </TopBtn>
       )}
       {/* timer or finish quiz modal*/}
@@ -246,8 +259,11 @@ const QuestionScreen: FC = () => {
       {isSingleQuiz && (
         <>
           <TopBtn onClick={onClickRetry} isSingle={isSingleQuiz}>
-            TOP
+            <div>トップへ</div>
           </TopBtn>
+          <SiteDescWrapper>
+            <HeaderDescText />
+          </SiteDescWrapper>
           <TermWrapper>
             <TermComponent />
           </TermWrapper>
