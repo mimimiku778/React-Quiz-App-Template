@@ -4,6 +4,7 @@ import { ReactComponent as Silver } from '../assets/icons/silver.svg'
 import { ReactComponent as Glod } from '../assets/icons/gold.svg'
 import { javascript } from './QuizQuestions/javascript'
 import { python } from './QuizQuestions/python'
+import { react } from './QuizQuestions/react'
 
 type QuizTopic = {
   title: string
@@ -13,7 +14,7 @@ type QuizTopic = {
 
 export const quizTopics: QuizTopic[] = [
   {
-    title: 'ブロンズ',
+    title: react.topic,
     icon: <Bronze />,
   },
   {

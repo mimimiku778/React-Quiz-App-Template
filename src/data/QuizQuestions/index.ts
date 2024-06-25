@@ -1,5 +1,6 @@
 /* import { python } from './python' */
 import { javascript } from './javascript'
+import { python } from './python'
 import { react } from './react'
 
 // Question Types
@@ -36,8 +37,14 @@ export type Topic = {
   questions: Question[]
 }
 
-export const quiz: Record<string, Topic> = {
-  'ブロンズ': react,
-  'シルバー': javascript,
-  /** 'ゴールド': python, */
+const quizRecords: Record<string, Topic> = {
+  [react.topic]: react,
 }
+
+if (javascript)
+  quizRecords['シルバー'] = javascript
+
+if (python)
+  quizRecords['ゴールド'] = python
+
+export const quiz = quizRecords

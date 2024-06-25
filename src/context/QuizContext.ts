@@ -5,7 +5,7 @@ import { react } from '../data/QuizQuestions/react'
 export const initialState: QuizContextTypes = {
   currentScreen: ScreenTypes.SplashScreen,
   setCurrentScreen: () => {},
-  quizTopic: 'ブロンズ',
+  quizTopic: react.topic,
   selectQuizTopic: () => {},
   questions: [],
   setQuestions: () => {},
@@ -19,7 +19,7 @@ export const initialState: QuizContextTypes = {
     totalQuestions: react.totalQuestions,
     totalScore: 0,
     totalTime: 0,
-    selectedQuizTopic: 'ブロンズ',
+    selectedQuizTopic: react.topic,
   },
 }
 
