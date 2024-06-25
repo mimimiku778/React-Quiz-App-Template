@@ -65,9 +65,12 @@ const QuestionNumber = styled.h6`
 `
 
 const QuestionStyle = styled.span`
-  font-size: clamp(16px, 5vw, 24px);
+  font-size: clamp(18px, 4vw, 24px);
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  white-space: break-spaces;
+  line-break: anywhere;
   color: ${({ theme }) => theme.colors.primaryText};
   margin-bottom: 20px;
   @media ${device.md} {

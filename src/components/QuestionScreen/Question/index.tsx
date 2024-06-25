@@ -24,11 +24,14 @@ const AnswersContainer = styled.div`
 `
 
 const QuestionStyle = styled.h2`
-  font-size: clamp(18px, 4vw, 28px);
+  font-size: clamp(18px, 4vw, 24px);
   font-weight: 500;
   margin-bottom: 25px;
   color: ${({ theme }) => theme.colors.primaryText};
   line-height: 1.4;
+  overflow-wrap: anywhere;
+  white-space: break-spaces;
+  line-break: anywhere;
 `
 
 interface QuestionTypes {
