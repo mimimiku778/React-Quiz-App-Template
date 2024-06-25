@@ -180,6 +180,21 @@ const LinkButton = styled.div`
   }
 `
 
+const LinkWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+`
+
+const PageLink = styled.a`
+  color: ${({ theme }) => theme.colors.themeText};
+  display: block;
+  width: fit-content;
+`
+
 interface ShareIconProps {
   url: string
   width?: number
@@ -323,6 +338,11 @@ const ResultScreen: FC = () => {
           }
         )}
       </InnerContainer>
+      <LinkWrapper>
+        <PageLink href="https://openchat-review.me/accreditation/login" target="_blank">
+          問題の投稿はこちらから！
+        </PageLink>
+      </LinkWrapper>
       <Flex flxEnd>
         <Button
           text="TOP"
