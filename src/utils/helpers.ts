@@ -37,8 +37,7 @@ export const convertSeconds = (seconds: number): string => {
 }
 
 export const refreshPage = (): void => {
-  const url = new URL(window.location.href);
-  window.history.replaceState(null, '', url.pathname);
+  window.history.replaceState(null, '', '/accreditation');
   window.location.reload()
 }
 
