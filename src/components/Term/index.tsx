@@ -6,12 +6,12 @@ const Term = styled.span`
 `
 
 const Desc = styled.div`
-  color: ${({ theme }) => theme.colors.themeText};
+  color: ${({ theme }) => theme.colors.darkerGray};
   font-size: 16px;
   margin-bottom: 20px;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.4;
-  `
+`
 
 const DescText = styled.p`
   word-break: keep-all;
@@ -36,10 +36,6 @@ export const HeaderDescText: React.FC = () => {
       オプチャ検定は、LINEオープンチャットの
       <wbr />
       利用に関連する知識を深める場所です。
-      <br />
-      ガイドライン、ルール、管理方法などに
-      <wbr />
-      ついて楽しく学ぶことができます。
     </DescText>
   )
 }
@@ -49,11 +45,9 @@ export const DescriptionComponent: React.FC = () => {
     <Desc>
       <HeaderDescText />
       <DescText>
-        問題投稿ページでは誰でも問題を投稿でき、
+        誰でも問題を投稿でき、
         <wbr />
-        他の人が投稿した問題を閲覧できます。
-        <br />
-        自分の知識を共有して、
+        自分の知識を共有することで
         <wbr />
         オープンチャットコミュニティに
         <wbr />

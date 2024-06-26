@@ -197,7 +197,7 @@ const PageLink = styled.a`
   display: block;
   width: fit-content;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 14px;
 `
 
 interface ShareIconProps {
@@ -345,7 +345,7 @@ const ResultScreen: FC = () => {
       </InnerContainer>
       <LinkWrapper>
         <PageLink href="https://openchat-review.me/accreditation/login" target="_blank">
-          問題の投稿はこちらから！
+          オプチャ検定｜問題投稿ページ
         </PageLink>
       </LinkWrapper>
       <Flex flxEnd>

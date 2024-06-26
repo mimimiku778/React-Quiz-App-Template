@@ -90,7 +90,7 @@ const LinkWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 12px;
-  margin: 50px 0 20px 0;
+  margin: 40px 0 10px 0;
 `
 
 const PageLink = styled.a`
@@ -98,7 +98,7 @@ const PageLink = styled.a`
   display: block;
   width: fit-content;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 14px;
 `
 
 const QuizTopicsScreen: React.FC = () => {
@@ -137,7 +137,7 @@ const QuizTopicsScreen: React.FC = () => {
       </CenterCardContainer>
       <LinkWrapper>
         <PageLink href="https://openchat-review.me/accreditation/login" target="_blank">
-          問題の投稿はこちらから！
+          オプチャ検定｜問題投稿ページ
         </PageLink>
       </LinkWrapper>
       <TermWrapper>
