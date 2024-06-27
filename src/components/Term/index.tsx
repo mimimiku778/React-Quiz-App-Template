@@ -1,9 +1,19 @@
 import styled from 'styled-components'
 
-const Term = styled.span`
+const TermWrapper = styled.div`
   font-size: 11px;
-  line-height: 1.3;
+  line-height: 1.5;
 `
+
+const TermLink = styled.a`
+  display: block;
+  color: inherit;
+  width: fit-content;
+  margin: auto;
+  margin-top: 10px;
+`
+
+const Term = styled.div``
 
 const Desc = styled.div`
   color: ${({ theme }) => theme.colors.darkerGray};
@@ -22,11 +32,14 @@ const DescText = styled.p`
 
 export const TermComponent: React.FC = () => {
   return (
-    <Term>
-      このサイトはLINEオープンチャット非公式です。
-      LINEヤフー社はこの内容に関与していません。
-      監修しているのは一部のLINEオープンチャット公認メンターです。
-    </Term>
+    <TermWrapper>
+      <Term>
+        このサイトはLINEオープンチャット非公式です。
+        LINEヤフー社はこの内容に関与していません。
+        監修しているのは一部のLINEオープンチャット公認メンターです。
+      </Term>
+      <TermLink href="/accreditation/privacy" target="_blank">プライバシーポリシー</TermLink>
+    </TermWrapper>
   )
 }
 

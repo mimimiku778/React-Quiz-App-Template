@@ -189,7 +189,7 @@ const LinkWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 12px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 `
 
 const PageLink = styled.a`
