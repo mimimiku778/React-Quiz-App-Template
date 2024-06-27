@@ -20,12 +20,12 @@ const QuizContainer = styled.div<{ selectedAnswer: boolean; isSingle: boolean }>
   min-height: ${({ isSingle }) => (!isSingle ? '500px' : '0')};
   background: ${({ theme }) => theme.colors.cardBackground};
   border-radius: 4px;
-  padding: 30px 60px ${({ isSingle }) => (!isSingle ? '80px' : '0')} 60px;
+  padding: 30px 60px ${({ isSingle }) => (!isSingle ? '80px' : '40px')} 60px;
   margin-bottom: ${({ isSingle }) => (!isSingle ? '70px' : '0')};
   position: relative;
   @media ${device.md} {
     width: 100%;
-    padding: 15px 15px ${({ isSingle }) => (!isSingle ? '80px' : '0')} 15px;
+    padding: 15px 15px ${({ isSingle }) => (!isSingle ? '80px' : '30px')} 15px;
   }
   button {
     span {
@@ -102,7 +102,7 @@ const SiteDescWrapper = styled.div`
   color: ${({ theme }) => theme.colors.white};
   font-size: 14px;
   line-height: 1.4;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 `
 
 const QuestionScreen: FC = () => {
@@ -220,16 +220,13 @@ const QuestionScreen: FC = () => {
           selectedAnswer={selectedAnswer}
           id={id}
         />
-        {!isSingleQuiz && (
-          <ButtonWrapper>
-            {contributor && (
-              <ContributorWrapper>
-                <>
-                  <ContributorNameLabel>出題者</ContributorNameLabel>
-                  <ContributorWrapper>{contributor.name}</ContributorWrapper>
-                </>
-              </ContributorWrapper>
-            )}
+        <ButtonWrapper>
+          {contributor && (
+            <ContributorWrapper>
+              <ContributorWrapper>出題者 {contributor.name}</ContributorWrapper>
+            </ContributorWrapper>
+          )}
+          {!isSingleQuiz && (
             <Button
               text={activeQuestion === questions.length - 1 ? '完了' : '次へ'}
               onClick={onClickNext}
@@ -237,8 +234,8 @@ const QuestionScreen: FC = () => {
               iconPosition="right"
               disabled={selectedAnswer.length === 0}
             />
-          </ButtonWrapper>
-        )}
+          )}
+        </ButtonWrapper>
       </QuizContainer>
       {!isSingleQuiz && (
         <TopBtn onClick={onClickRetry} isSingle={isSingleQuiz}>

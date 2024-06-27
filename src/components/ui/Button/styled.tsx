@@ -26,7 +26,7 @@ export const ButtonStyle = styled.button.attrs(({ outline, bold, big }: ButtonTy
   justify-content: center;
   align-items: center;
   @media ${device.md} {
-    min-width: ${({ big }) => (big ? '180px' : '150px')};
+    min-width: ${({ big }) => (big ? '195px' : '150px')};
     min-height: 40px;
     tap-highlight-color: transparent;
     -webkit-tap-highlight-color: transparent;

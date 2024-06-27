@@ -14,12 +14,12 @@ interface RightAnswerProps {
   id?: number
 }
 
-const RightAnswerContainer = styled.p`
+const RightAnswerContainer = styled.p<{ marginTop: number }>`
   font-size: 16px;
   font-weight: 400;
   color: ${({ theme }) => theme.colors.darkerGray};
-  margin-top: 15px;
-  line-height: 1.35;
+  margin-top: ${({ marginTop }) => marginTop}px;
+  line-height: 1.5;
   overflow-wrap: anywhere;
   white-space: break-spaces;
   line-break: anywhere;
@@ -46,7 +46,7 @@ const SourceLinkWrapper = styled.div`
   overflow-wrap: break-word;
   line-break: anywhere;
   color: ${({ theme }) => theme.colors.darkerGray};
-  margin-top: 6px;
+  margin-top: 15px;
   line-height: 1.5;
   font-size: 13px;
 `
@@ -79,6 +79,10 @@ const ContributorRoomName = styled.a`
   color: unset;
 `
 
+const AnswerLabel = styled.span`
+  font-weight: 700;
+`
+
 const RightAnswer: FC<RightAnswerProps> = ({
   correctAnswers,
   choices,
@@ -90,7 +94,7 @@ const RightAnswer: FC<RightAnswerProps> = ({
 }) => {
   return (
     <>
-      <RightAnswerContainer>
+      <RightAnswerContainer marginTop={20}>
         {!isMatch && (
           <>
             {`正解 `}
@@ -99,7 +103,7 @@ const RightAnswer: FC<RightAnswerProps> = ({
 
               return (
                 <HighlightedText key={index} themeText>
-                  {label}
+                  {label}. {item}
                 </HighlightedText>
               )
             })}
@@ -107,7 +111,7 @@ const RightAnswer: FC<RightAnswerProps> = ({
         )}
       </RightAnswerContainer>
       {explanation && (
-        <RightAnswerContainer>
+        <RightAnswerContainer marginTop={10}>
           <HighlightedText themeText>{explanation}</HighlightedText>
         </RightAnswerContainer>
       )}

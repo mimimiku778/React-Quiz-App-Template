@@ -147,7 +147,7 @@ const TermWrapper = styled.div`
 const ShareButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-top: 10px;
+  margin-top: 15px;
   gap: 12px;
 `
 
