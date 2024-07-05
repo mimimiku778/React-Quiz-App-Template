@@ -79,10 +79,6 @@ const ContributorRoomName = styled.a`
   color: unset;
 `
 
-const AnswerLabel = styled.span`
-  font-weight: 700;
-`
-
 const RightAnswer: FC<RightAnswerProps> = ({
   correctAnswers,
   choices,

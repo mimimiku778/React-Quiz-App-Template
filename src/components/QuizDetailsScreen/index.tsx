@@ -71,7 +71,6 @@ const QuizDetailsScreen = () => {
         <LogoContainer>
           <AppLogo />
         </LogoContainer>
-        <AppTitle>オプチャ検定 練習問題</AppTitle>
         <Paragraph>問題集からランダムで出題されます。</Paragraph>
         <DetailTextContainer>
           <DetailText>

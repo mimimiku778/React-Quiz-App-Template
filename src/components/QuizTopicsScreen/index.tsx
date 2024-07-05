@@ -115,7 +115,7 @@ const QuizTopicsScreen: React.FC = () => {
           <AppLogo />
         </LogoContainer>
         <Heading>
-          <HighlightedText>オプチャ検定 </HighlightedText>の練習問題に挑戦しよう！
+          <HighlightedText>オプチャ検定 </HighlightedText>に挑戦しよう！
         </Heading>
         {quizTopics.filter((t) => !t.disabled).length > 1 && (
           <DetailText>検定レベルを選択してください。</DetailText>

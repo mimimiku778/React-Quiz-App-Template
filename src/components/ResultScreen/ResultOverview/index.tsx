@@ -82,7 +82,7 @@ const ResultOverview: FC<ResultOverviewProps> = ({ result }) => {
         </p>
       )}
       <p>
-        {quizDetails.totalQuestions > 1 ? '練習レベル' : '問題レベル'}{' '}
+        {quizDetails.totalQuestions > 1 ? '検定レベル' : '問題レベル'}{' '}
         <HighlightedText>{quizDetails.selectedQuizTopic}</HighlightedText>
       </p>
       {quizDetails.totalQuestions > 1 && (
