@@ -74,7 +74,7 @@ const QuizDetailsScreen = () => {
         <Paragraph>問題集からランダムで出題されます。</Paragraph>
         <DetailTextContainer>
           <DetailText>
-            練習レベル <HighlightedText>{selectedQuizTopic}</HighlightedText>
+            検定レベル <HighlightedText>{selectedQuizTopic}</HighlightedText>
           </DetailText>
           <DetailText>
             出題数 <HighlightedText>{totalQuestions}</HighlightedText> 問
